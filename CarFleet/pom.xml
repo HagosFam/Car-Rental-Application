@@ -44,7 +44,12 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>cipa-start-jmssender</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
