@@ -39,6 +39,11 @@ public class CarFleetService implements ICarFleetService {
         carFleetRepository.deleteById(plateNumber);
     }
 
+    @Override
+    public CarDTO updateCar(String plateNumber, String type, String brand, double price) {
+        return null;
+    }
+
     public CarDTO updateCar(String plateNumber, String type, String brand, double price, boolean reserved) {
         Car car = new Car(plateNumber, type, brand, price, reserved);
 

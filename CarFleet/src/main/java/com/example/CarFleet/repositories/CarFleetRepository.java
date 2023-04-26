@@ -1,6 +1,5 @@
 package com.example.CarFleet.repositories;
 
-import com.example.CarFleet.domain.dto.CarDTO;
 import com.example.CarFleet.domain.entity.Car;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
