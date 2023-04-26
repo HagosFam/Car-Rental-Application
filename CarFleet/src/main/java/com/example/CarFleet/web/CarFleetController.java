@@ -17,14 +17,14 @@ public class CarFleetController {
     List<CarDTO> carsList;
 
     // creating car
-    @PostMapping("/car")
+    @PostMapping("/cars")
     public ResponseEntity<?> createCar(@RequestBody CarDTO carDTO) {
         CarDTO carDTO1 = carFleetService.createCar(carDTO);
         return new ResponseEntity<>(carDTO1, HttpStatus.OK);
     }
 
     // deleting a car
-    @DeleteMapping("/car/{plateNumber}")
+    @DeleteMapping("/cars/{plateNumber}")
     public ResponseEntity<?> removeCar(@PathVariable String plateNumber) {
         carFleetService.removeCar(plateNumber);
         return new ResponseEntity<>("Car deleted successfully", HttpStatus.OK);
