@@ -1,5 +1,6 @@
 package com.example.CarRental.domain.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -12,11 +13,11 @@ public class Customer {
     private String name;
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Reservation> reservationList;
 
-    @OneToMany
-    private List<Payment> creditCards;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Payment> paymentList;
 
     public Customer() {
 
@@ -43,6 +44,14 @@ public class Customer {
 
     public List<Reservation> getReservationList() {
         return reservationList;
+    }
+
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
     }
 
     public void setCustomerNumber(String customerNumber) {

@@ -12,7 +12,7 @@ public class Reservation {
     @GeneratedValue
     private long id;
     private String licensePlate;
-    protected LocalDateTime startDate;
+    private LocalDateTime startDate;
     private LocalDateTime returnDate;
     @ManyToOne
     private Customer customer;

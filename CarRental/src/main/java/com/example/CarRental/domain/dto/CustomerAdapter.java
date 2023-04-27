@@ -12,6 +12,7 @@ public class CustomerAdapter {
         customerDTO.setName(customer.getName());
         customerDTO.setEmail(customer.getEmail());
         customerDTO.setReservationList(customer.getReservationList());
+        customerDTO.setPaymentList(customer.getPaymentList());
         return customerDTO;
     }
 
@@ -21,6 +22,7 @@ public class CustomerAdapter {
         customer.setEmail(customerDTO.getEmail());
         customer.setName(customerDTO.getName());
         customer.setReservationList(customerDTO.getReservationList());
+        customer.setPaymentList(customerDTO.getPaymentList());
         return customer;
     }
 

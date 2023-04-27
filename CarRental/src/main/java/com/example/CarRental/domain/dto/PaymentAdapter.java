@@ -12,6 +12,7 @@ public class PaymentAdapter {
         payment.setCvv(paymentDTO.getCvv());
         payment.setAmountPaid(paymentDTO.getAmountPaid());
         payment.setCreditCardNumber(paymentDTO.getCreditCardNumber());
+        payment.setCustomer(paymentDTO.getCustomer());
         return payment;
     }
 
@@ -21,9 +22,9 @@ public class PaymentAdapter {
         paymentDTO.setPaymentType(payment.getPaymentType());
         paymentDTO.setCvv(payment.getCvv());
         paymentDTO.setCreditCardNumber(payment.getCreditCardNumber());
+        paymentDTO.setCustomer(payment.getCustomer());
         return paymentDTO;
     }
-
 
     public static List<PaymentDTO> getPaymentDTOListFromPayment(List<Payment> paymentList) {
         List<PaymentDTO> paymentDTOS = new ArrayList<>();

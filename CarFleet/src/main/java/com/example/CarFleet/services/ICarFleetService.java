@@ -10,12 +10,13 @@ public interface ICarFleetService {
 
     public void removeCar(String plateNumber);
 
-    public CarDTO updateCar(String plateNumber, String type, String brand, double price);
+    public CarDTO updateCar(String plateNumber, CarDTO update);
 
     public List<CarDTO> searchCarByPrice(double price);
     public List<CarDTO> searchCarByBrand(String brand);
     public List<CarDTO> searchCarByType(String type);
 
     public Collection<CarDTO> getAllCars();
+    public CarDTO getSingleCar(String plateNumber);
 
 }

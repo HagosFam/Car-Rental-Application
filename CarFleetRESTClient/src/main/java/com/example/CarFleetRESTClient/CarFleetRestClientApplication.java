@@ -20,7 +20,7 @@ import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 @SpringBootApplication
 public class CarFleetRestClientApplication implements CommandLineRunner {
 	RestTemplate restTemplate = new RestTemplate();
-	private String serverUrl =  "http://localhost:8080/cars";
+	private String serverUrl =  "http://localhost:8082/cars";
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarFleetRestClientApplication.class, args);
@@ -38,7 +38,6 @@ public class CarFleetRestClientApplication implements CommandLineRunner {
 		restTemplate.postForLocation(serverUrl, new Car("123434A", "Truck", "Chevi", new BigDecimal(23322.2), false));
 		// posting second car
 		restTemplate.postForLocation(serverUrl, new Car("123434B", "Pick up", "Chevi", new BigDecimal(233222.2), false) );
-
 
 		// searching cars based on type
 		// searching cars by brand

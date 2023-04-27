@@ -1,5 +1,7 @@
 package com.example.CarRental.domain.entity;
 
+import com.example.CarRental.domain.dto.CustomerDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,11 +24,12 @@ public class Payment {
 
     }
 
-    public Payment(String creditCardNumber, String cvv, BigDecimal amountPaid, String paymentType) {
+    public Payment(String creditCardNumber, String cvv, BigDecimal amountPaid, String paymentType, Customer customer) {
         this.creditCardNumber = creditCardNumber;
         this.cvv = cvv;
         this.amountPaid = amountPaid;
         this.paymentType = paymentType;
+        this.customer = customer;
     }
 
     public String getCreditCardNumber() {
@@ -59,5 +62,12 @@ public class Payment {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

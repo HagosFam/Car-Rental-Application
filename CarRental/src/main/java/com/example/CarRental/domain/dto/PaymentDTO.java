@@ -1,5 +1,7 @@
 package com.example.CarRental.domain.dto;
 
+import com.example.CarRental.domain.entity.Customer;
+
 import java.math.BigDecimal;
 
 public class PaymentDTO {
@@ -7,15 +9,17 @@ public class PaymentDTO {
     private String cvv;
     private BigDecimal amountPaid;
     private String paymentType;
+    private Customer customer;
 
 public PaymentDTO() {
 
 }
-    public PaymentDTO(String creditCardNumber, String cvv, BigDecimal amountPaid, String paymentType) {
+    public PaymentDTO(String creditCardNumber, String cvv, BigDecimal amountPaid, String paymentType, Customer customer) {
         this.creditCardNumber = creditCardNumber;
         this.cvv = cvv;
         this.amountPaid = amountPaid;
         this.paymentType = paymentType;
+        this.customer = customer;
     }
 
     public String getCreditCardNumber() {
@@ -48,5 +52,13 @@ public PaymentDTO() {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

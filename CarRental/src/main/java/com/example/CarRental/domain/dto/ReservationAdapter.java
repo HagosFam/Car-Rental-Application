@@ -4,6 +4,7 @@ import com.example.CarRental.domain.entity.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ReservationAdapter {
     public static Reservation getReservationFromReservationDTO(ReservationDTO reservationDTO) {

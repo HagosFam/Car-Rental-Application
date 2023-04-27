@@ -1,20 +1,26 @@
 package com.example.CarFleet.domain.dto;
+
+import org.springframework.beans.factory.annotation.Value;
+
 public class CarDTO {
     private String plateNumber;
     private String type;
     private String brand;
     private double price;
     private boolean reserved;
+    @Value("inStore")
+    private String pickStatus;
 
     public CarDTO() {
 
     }
-    public CarDTO(String plateNumber, String type, String brand, double price, int quantity, boolean reserved) {
+    public CarDTO(String plateNumber, String type, String brand, double price, int quantity, boolean reserved,String pickStatus) {
         this.plateNumber = plateNumber;
         this.type = type;
         this.brand = brand;
         this.price = price;
         this.reserved = reserved;
+        this.pickStatus = pickStatus;
     }
 
     public String getPlateNumber() {
@@ -48,11 +54,20 @@ public class CarDTO {
     public void setPrice(double price) {
         this.price = price;
     }
-    public boolean getreserved() {
+
+    public boolean isReserved() {
         return reserved;
+    }
+
+    public String getPickStatus() {
+        return pickStatus;
     }
 
     public void setReserved(boolean reserved) {
         this.reserved = reserved;
+    }
+
+    public void setPickStatus(String pickStatus) {
+        this.pickStatus = pickStatus;
     }
 }

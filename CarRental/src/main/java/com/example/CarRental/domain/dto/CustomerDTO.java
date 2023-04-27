@@ -1,5 +1,6 @@
 package com.example.CarRental.domain.dto;
 
+import com.example.CarRental.domain.entity.Payment;
 import com.example.CarRental.domain.entity.Reservation;
 
 import javax.persistence.OneToMany;
@@ -11,15 +12,19 @@ public class CustomerDTO {
     private String email;
     List<Reservation> reservationList;
 
+    List<Payment> paymentList;
+
 public CustomerDTO() {
 
 }
-    public CustomerDTO( String customerNumber, String name, String email, List<Reservation> reservationList) {
+    public CustomerDTO( String customerNumber, String name, String email, List<Reservation> reservationList, List<Payment> paymentList ) {
         this.customerNumber = customerNumber;
         this.name = name;
         this.email = email;
         this.reservationList = reservationList;
+        this.paymentList = paymentList;
     }
+
 
     public String getCustomerNumber() {
         return customerNumber;
@@ -37,6 +42,10 @@ public CustomerDTO() {
         return reservationList;
     }
 
+    public List<Payment> getPaymentList() {
+        return paymentList;
+    }
+
     public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
@@ -51,5 +60,9 @@ public CustomerDTO() {
 
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
+    }
+
+    public void setPaymentList(List<Payment> paymentList) {
+        this.paymentList = paymentList;
     }
 }

@@ -1,39 +1,24 @@
-package com.example.CarFleet.domain.entity;
+package com.example.CarRental.domain.entity;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+import java.math.BigDecimal;
+
 public class Car {
-    @Id
     private String plateNumber;
     private String type;
     private String brand;
-    private double price;
+    private BigDecimal price;
     private boolean reserved;
-    @Value("inStore")
-    private String pickStatus;
-
-    public void setPickStatus(String pickStatus) {
-        this.pickStatus = pickStatus;
-    }
-
-    public String getPickStatus() {
-        return pickStatus;
-    }
-
 
     public Car() {
     }
 
-    public Car(String plateNumber, String type, String brand, double price, boolean reserved, String pickStatus) {
+    public Car(String plateNumber, String type, String brand, BigDecimal price, boolean reserved) {
         this.plateNumber = plateNumber;
         this.type = type;
         this.brand = brand;
         this.price = price;
         this.reserved = reserved;
-        this.pickStatus = pickStatus;
     }
 
     public String getPlateNumber() {
@@ -48,7 +33,7 @@ public class Car {
         return brand;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -64,7 +49,7 @@ public class Car {
         this.brand = brand;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -76,4 +61,14 @@ public class Car {
         this.reserved = reserved;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "plateNumber='" + plateNumber + '\'' +
+                ", type='" + type + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", reserved=" + reserved +
+                '}';
+    }
 }

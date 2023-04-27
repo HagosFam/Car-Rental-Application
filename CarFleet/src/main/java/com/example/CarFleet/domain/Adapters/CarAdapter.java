@@ -5,6 +5,7 @@ import com.example.CarFleet.domain.entity.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CarAdapter {
     public static Car changeFromCarDTOToCar(CarDTO carDTO) {
@@ -13,7 +14,8 @@ public class CarAdapter {
         car.setType(carDTO.getType());
         car.setBrand(carDTO.getBrand());
         car.setPrice(carDTO.getPrice());
-
+        car.setPickStatus(carDTO.getPickStatus());
+        car.setReserved(carDTO.isReserved());
         return car;
     }
 
@@ -23,6 +25,8 @@ public class CarAdapter {
         carDTO.setType(car.getType());
         carDTO.setBrand(car.getBrand());
         carDTO.setPrice(car.getPrice());
+        carDTO.setPickStatus(car.getPickStatus());
+        carDTO.setReserved(car.getreserved());
         return carDTO;
     }
 

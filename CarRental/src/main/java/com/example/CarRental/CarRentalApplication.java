@@ -1,12 +1,20 @@
 package com.example.CarRental;
 
+import com.example.CarRental.web.CustomerController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
+@EnableJms
 public class CarRentalApplication implements CommandLineRunner {
 
+	@Autowired
+	CustomerController customerController;
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalApplication.class, args);
 	}
@@ -22,6 +30,9 @@ public class CarRentalApplication implements CommandLineRunner {
 //		List<Reservation> reservations = new ArrayList<>();
 //		Reservation reservation = new Reservation();
 
+		// expect car to be printed
+		System.out.println("Checking search cars");
+		//customerController.searchCar("13321F");
 
 
 
