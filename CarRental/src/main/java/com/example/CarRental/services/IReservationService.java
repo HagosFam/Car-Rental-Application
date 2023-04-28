@@ -1,12 +1,12 @@
 package com.example.CarRental.services;
 
 import com.example.CarRental.domain.dto.CustomerDTO;
+import com.example.CarRental.domain.dto.PaymentDTO;
 import com.example.CarRental.domain.dto.ReservationDTO;
-import org.springframework.http.ResponseEntity;
 
 public interface IReservationService {
     // reserve a car
-    public ResponseEntity<ReservationDTO> reserveCar(String customerNumber, ReservationDTO reservationDTO);
+    public void reserveCar(String plateNumber, CustomerDTO customerDTO);
     // send message when car is reserved
     // anytime the car is reserved, the availabiliy of the car is decremented
 
@@ -16,7 +16,7 @@ public interface IReservationService {
     // pick status becomes picked
 
 
-    public void returnCar(String plateNumber);
+    public void returnCar(String plateNumber, CustomerDTO customerDTO);
     // return car
     // pays when the car is returned
     // the pay method is called from reservation service

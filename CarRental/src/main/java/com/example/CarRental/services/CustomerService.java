@@ -8,13 +8,14 @@ import com.example.CarRental.jms.JMSSender;
 import com.example.CarRental.logging.Logger;
 import com.example.CarRental.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -26,27 +27,24 @@ public class CustomerService implements ICustomerService {
     @Autowired
     JMSSender jmsSender;
 
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
     RestTemplate restTemplate = new RestTemplate();
-    private String serverUrl = "http://localhost:8070/cars";
+    private String serverUrl = "http://localhost:8070/car/";
 
-    // running every 20 seconds about the overview status of cars
-
+    // using value from application proporties
+//    @Value("${carFleetUrl}")
+//    private String serverUrl;
 
     //get single car
     @Override
     public Car searchCars(String plateNumber) {
-        ResponseEntity<Car> response = restTemplate.getForEntity("http://localhost:8070/car/" + plateNumber, Car.class);
+        ResponseEntity<Car> response = restTemplate.getForEntity(serverUrl + plateNumber, Car.class);
         Car car = response.getBody(); // get the array of cars from the response
         return car;
     }
 
-    // get all cars
-//    @Override
-//    public List<Car> getAllCars() {
-//        List<Car> response = restTemplate.getForEntity("http://localhost:8070/cars", Car.class);
-//        List<Car> car = response.getBody(); // get the array of cars from the response
-//        return car;
-//    }
     @Override
     public Car getAllCars() {
         return null;
@@ -60,6 +58,7 @@ public class CustomerService implements ICustomerService {
         jmsSender.sendMessage("Car creation message");
         return CustomerAdapter.getCustomerDTOFromCustomer(customer);
     }
+
 
     @Override
     public CustomerDTO getOneCustomer(String customerNumber) {
@@ -103,12 +102,22 @@ public class CustomerService implements ICustomerService {
     // sending email
     // count number of cars and if it is less than 3, send an email
 
+
+    public void countCarsEvent(CountCarEvent event) {
+        // count cars here
+        if (6 < 9) {
+            System.out.println("Sending email event to fleet manager" + event);
+            eventPublisher.publishEvent(new CountCarEvent("Hey Fleet manager, Number of cars is less than 3"));
+        }
+
+    }
+
     @Scheduled(fixedRate = 20000)
     public void printCarsStatus() {
-        ResponseEntity<Car []> response = restTemplate.getForEntity ("http://localhost:8070/allCars", Car [].class);
-        Car[] cars = response.getBody ();
+        ResponseEntity<Car[]> response = restTemplate.getForEntity("http://localhost:8070/allCars", Car[].class);
+        Car[] cars = response.getBody();
         System.out.println("Printing status of all cars");
-        for (Car car:cars){
+        for (Car car : cars) {
             System.out.println(car);
         }
     }

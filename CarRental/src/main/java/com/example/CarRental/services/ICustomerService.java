@@ -1,9 +1,7 @@
 package com.example.CarRental.services;
 
-import com.example.CarRental.domain.dto.CustomerAdapter;
 import com.example.CarRental.domain.dto.CustomerDTO;
 import com.example.CarRental.domain.entity.Car;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

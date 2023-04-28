@@ -19,7 +19,7 @@ public class CarFleetController {
     @PostMapping("/cars")
     public ResponseEntity<?> createCar(@RequestBody CarDTO carDTO) {
         CarDTO carDTO1 = carFleetService.createCar(carDTO);
-        return new ResponseEntity<>(carDTO1, HttpStatus.OK);
+        return new ResponseEntity<>(carDTO1.getPickStatus(), HttpStatus.OK);
     }
 
     // get one car, based on license plate
@@ -54,6 +54,20 @@ public class CarFleetController {
     public Integer getOneBrandCount(@PathVariable String brand) {
         carsList= carFleetService.searchCarByBrand(brand);
         return carsList.size();
+    }
+
+    @PutMapping("/car/{plateNumber}")
+    public ResponseEntity<?> updateCar(@PathVariable("plateNumber") String plateNumber, @RequestBody CarDTO carDTO) {
+        carFleetService.updateCar(plateNumber, carDTO);
+        return new ResponseEntity<>("Car updated ", HttpStatus.OK);
+
+    }
+
+    @PutMapping("/carReserve/{plateNumber}")
+    public ResponseEntity<?> reserveCar(@PathVariable("plateNumber") String plateNumber, @RequestBody CarDTO carDTO) {
+        carFleetService.updateCar(plateNumber, carDTO);
+        return new ResponseEntity<>("Car updated ", HttpStatus.OK);
+
     }
 
 }

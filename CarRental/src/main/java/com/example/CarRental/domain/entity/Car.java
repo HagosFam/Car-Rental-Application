@@ -1,24 +1,36 @@
 package com.example.CarRental.domain.entity;
 
-
-import java.math.BigDecimal;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.Id;
 
 public class Car {
+    @Id
     private String plateNumber;
     private String type;
     private String brand;
-    private BigDecimal price;
+    private double price;
     private boolean reserved;
+    private String pickStatus;
+
+    public void setPickStatus(String pickStatus) {
+        this.pickStatus = pickStatus;
+    }
+
+    public String getPickStatus() {
+        return pickStatus;
+    }
+
 
     public Car() {
     }
 
-    public Car(String plateNumber, String type, String brand, BigDecimal price, boolean reserved) {
+    public Car(String plateNumber, String type, String brand, double price, boolean reserved, String pickStatus) {
         this.plateNumber = plateNumber;
         this.type = type;
         this.brand = brand;
         this.price = price;
         this.reserved = reserved;
+        this.pickStatus = pickStatus;
     }
 
     public String getPlateNumber() {
@@ -33,7 +45,7 @@ public class Car {
         return brand;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -49,7 +61,7 @@ public class Car {
         this.brand = brand;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -69,6 +81,7 @@ public class Car {
                 ", brand='" + brand + '\'' +
                 ", price=" + price +
                 ", reserved=" + reserved +
+                ", pickStatus='" + pickStatus + '\'' +
                 '}';
     }
 }

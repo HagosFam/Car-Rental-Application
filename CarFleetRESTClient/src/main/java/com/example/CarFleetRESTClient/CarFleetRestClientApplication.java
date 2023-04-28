@@ -1,5 +1,6 @@
 package com.example.CarFleetRESTClient;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +21,8 @@ import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 @SpringBootApplication
 public class CarFleetRestClientApplication implements CommandLineRunner {
 	RestTemplate restTemplate = new RestTemplate();
-	private String serverUrl =  "http://localhost:8082/cars";
+	@Value("${serverUrl}")
+	private String serverUrl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarFleetRestClientApplication.class, args);
@@ -29,36 +31,21 @@ public class CarFleetRestClientApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
          // Getting all cars
-		ResponseEntity<Car[]> response = restTemplate.getForEntity(serverUrl, Car[].class);
+		ResponseEntity<Car[]> response = restTemplate.getForEntity(serverUrl+"allCars", Car[].class);
 		Car[] cars = response.getBody(); // get the array of cars from the response
 		System.out.println("Printing all cars");
 		System.out.print("\n" + Arrays.toString(cars));
 
 		// Posting cars
-		restTemplate.postForLocation(serverUrl, new Car("123434A", "Truck", "Chevi", new BigDecimal(23322.2), false));
+		restTemplate.postForLocation(serverUrl+"cars", new Car("123434A", "Truck", "Chevi", new BigDecimal(23322.2), false));
 		// posting second car
-		restTemplate.postForLocation(serverUrl, new Car("123434B", "Pick up", "Chevi", new BigDecimal(233222.2), false) );
+		restTemplate.postForLocation(serverUrl+"cars", new Car("123434B", "Pick up", "Chevi", new BigDecimal(233222.2), false) );
 
 		// searching cars based on type
 		// searching cars by brand
 		// searching cars by price
 		// updating cars
 
-
-
-
-
-
-
-
-
-
-
-
-		//get all cars
-//		System.out.println("Listing all cars");
-//		Cars cars = restTemplate.getForObject(serverUrl, Cars.class);
-//		System.out.println(cars);
 
 
 
